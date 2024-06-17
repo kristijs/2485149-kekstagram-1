@@ -1,7 +1,7 @@
 const thumbnailTemplate = document
   .querySelector('#picture')
   .contetnt.querySelector('.picture');
-const container = document.querySelector('.picture');
+const container = document.querySelector('.pictures');
 
 const createThumbnail = ({ comments, description, likes, url}) =>{
   const thumbnail = thumbnailTemplate.cloneNode(true);
@@ -9,7 +9,7 @@ const createThumbnail = ({ comments, description, likes, url}) =>{
   thumbnail.querySelector('.picture_img').src = url;
   thumbnail.querySelector('.picture_img').alt = description;
   thumbnail.querySelector('.picture_likes').textContent = likes;
-  thumbnail.querySelector('.picture_comments').textContent = comments;
+  thumbnail.querySelector('.picture_comments').textContent = comments.length;
 
   return thumbnail;
 
