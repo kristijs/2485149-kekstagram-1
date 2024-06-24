@@ -1,4 +1,4 @@
-import {getRandomInteger, getRandomArrayElement, createIdGenerator} from `./util.js`;
+import {getRandomInteger, getRandomArrayElement, createIdGenerator} from './util.js';
 
 const PICTURE_COUNT = 25;
 const LIKE_MIN_COUNT = 15;
