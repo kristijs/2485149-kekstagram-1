@@ -36,7 +36,6 @@ const renderComments = (comments) => {
     const commentElement = createComment(comments[i]);
     fragment.append(commentElement);
   }
-  console.log(commentList);
   commentList.innerHTML = '';
   commentList.append(fragment);
   commentCount.querySelector('.comments-count').innerHTML = `${commentsShown}`;
