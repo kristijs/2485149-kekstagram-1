@@ -1,4 +1,6 @@
+import { hideModal, showModal } from './form.js';
 import {getRandomInteger, getRandomArrayElement, createIdGenerator} from './util.js';
+import {hideModal,showModal} from './form.js';
 
 const PICTURE_COUNT = 25;
 const LIKE_MIN_COUNT = 15;
