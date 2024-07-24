@@ -1,4 +1,4 @@
-import { initComments, renderComments, resetComments} from './renderComments.js';
+import { initComments, renderComments, resetComments, totalCountComments} from './renderComments.js';
 const bigPicture = document.querySelector('.big-picture');
 const body = document.querySelector('body');
 const cancelButton = document.querySelector('.big-picture__cancel');
@@ -31,6 +31,7 @@ const showBigPicture = (picture) => {
   body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
   renderPictureDetails(picture);
+  totalCountComments();
   initComments(picture.comments);
   renderComments(picture.comments);
 };

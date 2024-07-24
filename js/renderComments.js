@@ -1,7 +1,8 @@
 const bigPicture = document.querySelector('.big-picture');
-const commentList = bigPicture.querySelector('.social__comments');
+const commentsList = bigPicture.querySelector('.social__comments');
 const commentsLoader = document.querySelector('.comments-loader');
 const counterElement = bigPicture.querySelector('.social__comment-counter');
+const commentShownCount = bigPicture.querySelector('.comments-count');
 const commentElementTemplate = document.querySelector('.social__comment');
 const COMMENTS_PER_PORTION = 5;
 const STEP = 5;
@@ -30,8 +31,12 @@ const showMoreComments = () => {
   }
 };
 
+const totalCountComments = () => {
+  counterElement.innerHTML = `${commentsList.querySelectorAll('.social__comment').length} из ${commentShownCount.textContent} комментариев`;
+
+};
 const renderComments = () => {
-  commentList.innerHTML = '';
+  commentsList.innerHTML = '';
   totalValue = comments.length;
   counter = COMMENTS_PER_PORTION > totalValue ? totalValue : COMMENTS_PER_PORTION;
   const fragment = document.createDocumentFragment();
@@ -45,7 +50,7 @@ const renderComments = () => {
     fragment.appendChild(commentElement);
   });
   commentsElements = [...fragment.childNodes];
-  commentList.appendChild(fragment);
+  commentsList.appendChild(fragment);
 };
 
 const initComments = (data) =>{
@@ -65,4 +70,4 @@ const resetComments = () =>{
 };
 commentsLoader.addEventListener ('click', showMoreComments);
 
-export { renderComments, initComments, resetComments };
+export { renderComments, initComments, resetComments, totalCountComments };
