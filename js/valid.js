@@ -1,7 +1,7 @@
-import { form } from './form.js';
 const MAX_HASHTAG_COUNT = 5;
 const MAX_COMMENTS_LENGTH = 140;
 const TAG_ERROR_TEXT = 'Некорректно записаны хэштеги';
+const form = document.querySelector('.img-upload__form');
 const hashtags = document.querySelector('.text__hashtags');
 const comment = document.querySelector('.text__description');
 const regularHashtag = /^#[a-zа-яё0-9]{1,19}$/i;
@@ -36,13 +36,3 @@ pristine.addValidator(
   checkDescriptionLength,
   `Длина комментария не может превышать ${MAX_COMMENTS_LENGTH} символов`
 );
-
-
-form.addEventListener('submit', (evt) => {
-  const isValid = pristine.validate();
-  if (!isValid) {
-    evt.preventDefault();
-  // } else {
-  //   form.submit();
-  }
-});

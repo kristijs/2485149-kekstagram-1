@@ -1,3 +1,5 @@
+import { resetScaleValue } from './scale.js';
+import { defaultEffect } from './effects.js';
 const form = document.querySelector('.img-upload__form');
 const overlay = document.querySelector('.img-upload__overlay');
 const body = document.querySelector('body');
@@ -8,6 +10,8 @@ const commentField = document.querySelector('.text__descriptions');
 
 
 const showModal = () =>{
+  resetScaleValue();
+  defaultEffect();
   overlay.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
@@ -45,5 +49,3 @@ const onFormSubmit = (evt) =>{
 fileField.addEventListener('change', onFileInputChange);
 cancelButton.addEventListener('click',onCancelButtonClick);
 form.addEventListener('submit', onFormSubmit);
-
-export {form};
