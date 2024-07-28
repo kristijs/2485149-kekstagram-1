@@ -32,57 +32,80 @@ const NAMES = [
   'Ангелина',
 ];
 
-const FILTERSCONFIG = [
-  {
-    name: 'none',
-    filter: 'none',
+const FILTER_CONFIG = {
+  none: {
+    style: 'none',
     min: 0,
     max: 100,
     step: 1,
+    unit: ''
+  },
+
+  chrome: {
+    options: {
+      range: {
+        min: 0,
+        max: 1,
+      },
+      start: 1,
+      step: 0.1,
+    },
+    style: 'grayscale',
     unit: '',
   },
-  {
-    name: 'chrome',
-    filter: 'grayscale',
-    min: 0,
-    max: 1,
-    step: 0.1,
+
+  sepia: {
+    options: {
+      range: {
+        min: 0,
+        max: 1,
+      },
+      start: 1,
+      step: 0.1,
+    },
+    style: 'sepia',
     unit: '',
   },
-  {
-    name: 'sepia',
-    filter: 'sepia',
-    min: 0,
-    max: 1,
-    step: 0.1,
-    unit: '',
-  },
-  {
-    name: 'marvin',
-    filter: 'invert',
-    min: 0,
-    max: 100,
-    step: 1,
+
+  marvin: {
+    options: {
+      range: {
+        min: 0,
+        max: 100,
+      },
+      start: 100,
+      step: 1,
+    },
+    style: 'invert',
     unit: '%',
   },
-  {
-    name: 'phobos',
-    filter: 'blur',
-    min: 0,
-    max: 3,
-    step: 0.1,
+
+  phobos: {
+    options: {
+      range: {
+        min: 0,
+        max: 3,
+      },
+      start: 3,
+      step: 0.1,
+    },
+    style: 'blur',
     unit: 'px',
   },
-  {
-    name: 'heat',
-    filter: 'brightness',
-    min: 1,
-    max: 3,
-    step: 0.1,
-    unit: '',
-  }
-];
 
+  heat: {
+    options: {
+      range: {
+        min: 1,
+        max: 3,
+      },
+      start: 3,
+      step: 0.1,
+    },
+    style: 'brightness',
+    unit: '',
+  },
+};
 const generateCommentId = createIdGenerator();
 
 const createMessage = () =>
@@ -111,4 +134,4 @@ const getPictures = () =>
     getPicture(pictureIndex + 1)
   );
 
-export { getPictures, FILTERSCONFIG };
+export { getPictures, FILTER_CONFIG };

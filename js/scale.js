@@ -9,7 +9,7 @@ const smallerButtonElement = document.querySelector('.scale__control--smaller');
 const biggerButtonElement = document.querySelector('.scale__control--bigger');
 const form = document.querySelector('#upload-select-image');
 const changeInputElement = form.querySelector('.scale__control--value');
-const imageElement = document.querySelector('.img-upload__preview');
+const imageElement = form.querySelector('img');
 
 
 const changeScaleImage = (value) => {

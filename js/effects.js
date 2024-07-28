@@ -1,6 +1,4 @@
-import { FILTERSCONFIG } from './data.js';
-
-const NO_FILTER = FILTERSCONFIG[0];
+import { FILTER_CONFIG } from './data.js';
 
 const sliderElement = document.querySelector('.effect-level__slider');
 const sliderElementValue = document.querySelector('.effect-level__value');
@@ -9,22 +7,7 @@ const specialElements = document.querySelectorAll('.effects__radio');
 const specialElementsArray = Array.from(specialElements);
 const imgUploadPreview = document.querySelector('.img-upload__preview img');
 
-
-noUiSlider.create(sliderElement, {
-  range: {
-    min: NO_FILTER.min,
-    max: NO_FILTER.max,
-  },
-  start: NO_FILTER.max,
-  step: NO_FILTER.step,
-  connect: 'lower',
-});
-
-sliderElement.noUiSlider.on('update', () => {
-  sliderElementValue.value = sliderElement.noUiSlider.get();
-});
-
-const defaultEffect = () => {
+const getEffect = () => {
   imgUploadPreview.className = '';
   imgUploadPreview.classList.add('effects__preview--none');
   sliderElementConteiner.classList.add('hidden');
@@ -39,6 +22,20 @@ const setFilter = (filter) => {
   });
 };
 
+noUiSlider.create(sliderElement, {
+  range: {
+    min: 0,
+    max: 100,
+  },
+  start: 100,
+  step: 1,
+  connect: 'lower',
+});
+
+sliderElement.noUiSlider.on('update', () => {
+  sliderElementValue.value = sliderElement.noUiSlider.get();
+});
+
 specialElementsArray.forEach((element) => {
   element.addEventListener('change', () => {
     imgUploadPreview.className = '';
@@ -49,22 +46,22 @@ specialElementsArray.forEach((element) => {
         imgUploadPreview.style.filter = 'none';
         break;
       case 'chrome':
-        setFilter(FILTERSCONFIG.chrome);
+        setFilter(FILTER_CONFIG.chrome);
         break;
       case 'sepia':
-        setFilter(FILTERSCONFIG.sepia);
+        setFilter(FILTER_CONFIG.sepia);
         break;
       case 'marvin':
-        setFilter(FILTERSCONFIG.marvin);
+        setFilter(FILTER_CONFIG.marvin);
         break;
       case 'phobos':
-        setFilter(FILTERSCONFIG.phobos);
+        setFilter(FILTER_CONFIG.phobos);
         break;
       case 'heat':
-        setFilter(FILTERSCONFIG.heat);
+        setFilter(FILTER_CONFIG.heat);
         break;
     }
   });
 });
 
-export { defaultEffect };
+export { getEffect };
