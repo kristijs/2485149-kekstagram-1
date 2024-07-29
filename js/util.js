@@ -11,19 +11,11 @@ const getRandomInteger = (a, b) => {
 const getRandomArrayElement = (array) =>
   array[getRandomInteger(0, array.length - 1)];
 
-const createIdGenerator = () =>{
-  let lastGeneratedId = 0;
-
-  return () =>{
-    lastGeneratedId += 1;
-    return lastGeneratedId;
-  };
-};
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const onEscKeydown = (evt) => {
-  const inputFocus = evt.target.matches('input.text__hashtags:focus') || evt.target.matches('textarea.text__description:focus');
+  const inputFocus = evt.target.matches('.text__hashtags:focus') || evt.target.matches('textarea.text__description:focus');
   if (isEscapeKey(evt) && !inputFocus) {
     evt.preventDefault();
     hideModal();
@@ -55,4 +47,4 @@ const onEscKeydown = (evt) => {
 // };
 
 
-export {getRandomInteger, getRandomArrayElement,createIdGenerator, isEscapeKey,onEscKeydown};
+export {getRandomInteger, getRandomArrayElement,isEscapeKey,onEscKeydown};

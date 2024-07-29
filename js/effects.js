@@ -2,19 +2,19 @@ import { FILTER_CONFIG } from './data.js';
 
 const sliderElement = document.querySelector('.effect-level__slider');
 const sliderElementValue = document.querySelector('.effect-level__value');
-const sliderElementConteiner = document.querySelector('.img-upload__effect-level');
+const sliderElementContainer = document.querySelector('.img-upload__effect-level');
 const specialElements = document.querySelectorAll('.effects__radio');
 const specialElementsArray = Array.from(specialElements);
 const imgUploadPreview = document.querySelector('.img-upload__preview img');
 
-const getEffect = () => {
+const resetEffect = () => {
   imgUploadPreview.className = '';
   imgUploadPreview.classList.add('effects__preview--none');
-  sliderElementConteiner.classList.add('hidden');
+  sliderElementContainer.classList.add('hidden');
 };
 
 const setFilter = (filter) => {
-  sliderElementConteiner.classList.remove('hidden');
+  sliderElementContainer.classList.remove('hidden');
   sliderElement.noUiSlider.updateOptions(filter.options);
   sliderElement.noUiSlider.on('update', (values, handle) => {
     imgUploadPreview.style.filter = `${filter.style}(${values[handle]}${filter.unit})`;
@@ -42,7 +42,7 @@ specialElementsArray.forEach((element) => {
     imgUploadPreview.classList.add(`effects__preview--${element.value}`);
     switch (element.value) {
       case 'none':
-        sliderElementConteiner.classList.add('hidden');
+        sliderElementContainer.classList.add('hidden');
         imgUploadPreview.style.filter = 'none';
         break;
       case 'chrome':
@@ -64,4 +64,4 @@ specialElementsArray.forEach((element) => {
   });
 });
 
-export { getEffect };
+export { resetEffect };

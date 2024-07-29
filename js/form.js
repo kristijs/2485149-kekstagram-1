@@ -1,9 +1,8 @@
 import { resetScaleValue } from './scale.js';
-import { getEffect } from './effects.js';
+import { resetEffect } from './effects.js';
 import { onSuccessForm, onErrorForm } from './messages.js';
 import { sendData } from './api.js';
 import { pristine } from './valid.js';
-//import '../vendor/pristine/pristine.min.js';
 
 const form = document.querySelector('.img-upload__form');
 const overlay = document.querySelector('.img-upload__overlay');
@@ -20,7 +19,7 @@ const SubmitButtonText = {
 
 const showModal = () =>{
   resetScaleValue();
-  getEffect();
+  resetEffect();
   overlay.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
@@ -79,13 +78,14 @@ const setUploadFormSubmit = (onSuccess) => {
           hideModal();
           onSuccessForm();
         })
-        .catch(() => {
-          onErrorForm();
-        })
+        .catch(onErrorForm)
         .finally(unblockSubmitButton);
     }
   });
 };
+
+form.reset();
+pristine.reset();
 
 fileField.addEventListener('change', onFileInputChange);
 cancelButton.addEventListener('click',onCancelButtonClick);
