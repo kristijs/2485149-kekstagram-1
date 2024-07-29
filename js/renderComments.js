@@ -32,9 +32,11 @@ const showMoreComments = () => {
 };
 
 const totalCountComments = () => {
-  counterElement.innerHTML = `${commentsList.querySelectorAll('.social__comment').length} из ${commentShownCount.textContent} комментариев`;
-
+  const newCounterValue = counter;
+  counterElement.innerHTML = newCounterValue;
+  commentShownCount.innerHTML = comments.length;
 };
+
 const renderComments = () => {
   commentsList.innerHTML = '';
   totalValue = comments.length;

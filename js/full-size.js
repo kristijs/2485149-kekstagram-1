@@ -31,9 +31,9 @@ const showBigPicture = (picture) => {
   body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
   renderPictureDetails(picture);
-  totalCountComments();
   initComments(picture.comments);
   renderComments(picture.comments);
+  totalCountComments();
 };
 
 cancelButton.addEventListener('click', onCancelButtonClick);
