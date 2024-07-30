@@ -22,29 +22,5 @@ const onEscKeydown = (evt) => {
     hideBigPicture();
   }
 };
-// const showAlert = (message) => {
-//   const alertContainer = document.createElement('div');
-//   alertContainer.style.zIndex = '100';
-//   alertContainer.style.position = 'absolute';
-//   alertContainer.style.margin = 'auto 0';
-//   alertContainer.style.left = '30%';
-//   alertContainer.style.right = '30%';
-//   alertContainer.style.top = '10px';
-//   alertContainer.style.padding = '5px 10px';
-//   alertContainer.style.fontSize = '16px';
-//   alertContainer.style.textAlign = 'center';
-//   alertContainer.style.backgroundColor = 'rgba(255, 77, 77, 0.1)';
-//   alertContainer.style.borderRadius = '10px';
-//   alertContainer.style.textTransform = 'none';
-
-//   alertContainer.textContent = message;
-
-//   document.body.append(alertContainer);
-
-//   setTimeout(() => {
-//     alertContainer.remove();
-//   }, ALERT_SHOW_TIME);
-// };
-
 
 export {getRandomInteger, getRandomArrayElement,isEscapeKey,onEscKeydown};

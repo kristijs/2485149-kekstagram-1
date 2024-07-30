@@ -3,6 +3,7 @@ import { resetEffect } from './effects.js';
 import { onSuccessForm, onErrorForm } from './messages.js';
 import { sendData } from './api.js';
 import { pristine } from './valid.js';
+import { onEscKeydown } from './util.js';
 
 const form = document.querySelector('.img-upload__form');
 const overlay = document.querySelector('.img-upload__overlay');
@@ -22,14 +23,15 @@ const showModal = () =>{
   resetEffect();
   overlay.classList.remove('hidden');
   body.classList.add('modal-open');
-  document.addEventListener('keydown', onDocumentKeydown);
+  document.addEventListener('keydown', onEscKeydown);
 };
 
 const hideModal = () =>{
   form.reset();
+  pristine.reset();
   overlay.classList.add('hidden');
   body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onDocumentKeydown);
+  document.removeEventListener('keydown', onEscKeydown);
 };
 
 const isTextFieldFocused = () =>

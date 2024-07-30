@@ -29,11 +29,11 @@ function onShowAlertClose() {
   if (errorSectionElement) {
     errorSectionElement.remove();
   }
-  document.addEventListener('keydown', onEscKeydownError);
+  document.addEventListener('keydown', onEscKeydown);
 }
 
 const onMessageClose = (evt) => {
-  if (evt.target.closest('section')) {
+  if (!evt.target.closest('.success__inner') && !evt.target.closest('.error__inner')) {
     onShowAlertClose();
   }
 };
