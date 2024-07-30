@@ -12,6 +12,7 @@ const createThumbnail = ({ comments, description, likes, url, id }) => {
 
   return thumbnail;
 };
+
 const renderThumbnails = (pictures) => {
   const fragment = document.createDocumentFragment();
   pictures.forEach((picture) => {
