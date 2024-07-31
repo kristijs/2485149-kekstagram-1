@@ -11,7 +11,6 @@ function checkString(string, length) {
   }
 }
 
-
 function isPalindrome(string) {
   string = string.toLowerCase();
 

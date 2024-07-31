@@ -1,3 +1,6 @@
+import { hideModal } from './form.js';
+import { hideBigPicture } from './full-size.js';
+
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -8,12 +11,16 @@ const getRandomInteger = (a, b) => {
 const getRandomArrayElement = (array) =>
   array[getRandomInteger(0, array.length - 1)];
 
-const createIdGenerator = () =>{
-  let lastGeneratedId = 0;
 
-  return () =>{
-    lastGeneratedId += 1;
-    return lastGeneratedId;
-  };
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+const onEscKeydown = (evt) => {
+  const inputFocus = evt.target.matches('.text__hashtags:focus') || evt.target.matches('textarea.text__description:focus');
+  if (isEscapeKey(evt) && !inputFocus) {
+    evt.preventDefault();
+    hideModal();
+    hideBigPicture();
+  }
 };
-export {getRandomInteger, getRandomArrayElement,createIdGenerator};
+
+export {getRandomInteger, getRandomArrayElement,isEscapeKey,onEscKeydown};

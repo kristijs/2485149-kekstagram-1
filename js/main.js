@@ -1,6 +1,13 @@
-import { getPictures } from './data.js';
 import { renderGallery } from './gallery.js';
-import './form.js';
 import './valid.js';
 import './effects.js';
-renderGallery(getPictures());
+import { getData } from './api.js';
+import { onErrorDataForm } from './messages.js';
+import { hideModal, setUploadFormSubmit } from './form.js';
+
+
+getData()
+  .then(renderGallery)
+  .catch(onErrorDataForm);
+
+setUploadFormSubmit(hideModal);

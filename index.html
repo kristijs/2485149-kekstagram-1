@@ -230,11 +230,19 @@
     </section>
   </template>
 
-  <!-- Экран загрузки изображения -->
+    <!-- Экран загрузки изображения -->
   <template id="messages">
     <div class="img-upload__message  img-upload__message--loading">Загружаем...</div>
   </template>
-  <script src="vendor/pristine/pristine.min.js"></script>
+
+   <!-- Сообщение с ошибкой загрузки изображений от других пользователей -->
+   <template id="data-error">
+    <section class="data-error">
+      <h2 class="data-error__title">Не удалось загрузить данные</h2>
+    </section>
+  </template>
+
+   <script src="vendor/pristine/pristine.min.js"></script>
   <script src="vendor/nouislider/nouislider.js"></script>
   <script src="/js/main.js" type="module"></script>
 </body>

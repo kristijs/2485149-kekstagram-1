@@ -68,11 +68,10 @@ const showBigPicture = (picture) => {
   commentsLoader.classList.add('hidden');
   commentCount.classList.add('hidden');
   document.addEventListener('keydown', onDocumentKeydown);
-
   renderPictureDetails(picture);
   renderComments(picture.comments);
 };
 
 cancelButton.addEventListener('click', onCancelButtonClick);
 
-export { showBigPicture };
+export { showBigPicture, hideBigPicture , renderPictureDetails};

@@ -36,3 +36,5 @@ pristine.addValidator(
   checkDescriptionLength,
   `Длина комментария не может превышать ${MAX_COMMENTS_LENGTH} символов`
 );
+
+export { pristine };
