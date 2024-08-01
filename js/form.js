@@ -4,6 +4,7 @@ import { onSuccessForm, onErrorForm } from './messages.js';
 import { sendData } from './api.js';
 import { pristine } from './valid.js';
 import { onEscKeydown } from './util.js';
+import { uploadPhoto } from './upload-images.js';
 
 const form = document.querySelector('.img-upload__form');
 const overlay = document.querySelector('.img-upload__overlay');
@@ -24,6 +25,7 @@ const showModal = () =>{
   overlay.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onEscKeydown);
+  uploadPhoto();
 };
 
 const hideModal = () =>{
