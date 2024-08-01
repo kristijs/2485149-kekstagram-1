@@ -73,4 +73,4 @@ const showBigPicture = (picture) => {
 
 cancelButton.addEventListener('click', onCancelButtonClick);
 
-export { showBigPicture };
+export { showBigPicture, hideBigPicture , renderPictureDetails};

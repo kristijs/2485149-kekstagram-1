@@ -2,6 +2,7 @@ import { renderThumbnails } from './thumbnail.js';
 import { showBigPicture } from './full-size.js';
 
 const container = document.querySelector('.pictures');
+const NUMBER_RANDOM_PICTURES = 10;
 
 const renderGallery = (pictures) => {
   container.addEventListener('click', (evt) => {
@@ -19,4 +20,20 @@ const renderGallery = (pictures) => {
   renderThumbnails(pictures, container);
 };
 
-export { renderGallery };
+function renderRandom(pictures) {
+  renderGallery(
+    pictures.slice()
+      .sort(() => (Math.random() - 0.5))
+      .slice(0, NUMBER_RANDOM_PICTURES)
+  );
+}
+
+function renderDiscussed(pictures) {
+  renderGallery(
+    pictures.slice()
+      .sort((a, b) => (b.comments.length - a.comments.length))
+  );
+}
+
+export { renderGallery, renderRandom, renderDiscussed };
+
