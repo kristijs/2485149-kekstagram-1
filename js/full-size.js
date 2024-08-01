@@ -1,9 +1,5 @@
-const COMMENTS_PER_PORTION = 5;
-
+import { initComments, renderComments, resetComments, totalCountComments} from './renderComments.js';
 const bigPicture = document.querySelector('.big-picture');
-const commentCount = document.querySelector('.social__comment-count');
-const commentList = document.querySelector('.social__comments');
-const commentsLoader = document.querySelector('.comments-loader');
 const body = document.querySelector('body');
 const cancelButton = document.querySelector('.big-picture__cancel');
 
@@ -41,9 +37,12 @@ const renderComments = (comments) => {
   commentCount.querySelector('.comments-count').innerHTML = `${commentsShown}`;
 };
 
+
 const hideBigPicture = () => {
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
+  resetComments();
+
 };
 const onCancelButtonClick = () => {
   hideBigPicture();
@@ -65,11 +64,11 @@ const onDocumentKeydown = (evt) => {
 const showBigPicture = (picture) => {
   bigPicture.classList.remove('hidden');
   body.classList.add('modal-open');
-  commentsLoader.classList.add('hidden');
-  commentCount.classList.add('hidden');
   document.addEventListener('keydown', onDocumentKeydown);
   renderPictureDetails(picture);
+  initComments(picture.comments);
   renderComments(picture.comments);
+  totalCountComments();
 };
 
 cancelButton.addEventListener('click', onCancelButtonClick);
