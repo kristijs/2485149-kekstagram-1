@@ -4,17 +4,15 @@ const Filters = {
   DISCUSSED: 2
 };
 
-let currentFilter = Filters.DEFAULT;
 const BUTTONS = [
   document.querySelector('#filter-default'),
   document.querySelector('#filter-random'),
   document.querySelector('#filter-discussed')
 ];
-BUTTONS.forEach((btn) => btn.classList.remove('img-filters__button--active'));
-BUTTONS[currentFilter].classList.add('img-filters__button--active');
 
 const container = document.querySelector('.img-filters');
-container.classList.remove('img-filters--inactive');
+
+let currentFilter = Filters.DEFAULT;
 
 function setDefaultClick(cb) {
   BUTTONS[Filters.DEFAULT].addEventListener('click', () => {
@@ -42,5 +40,10 @@ function setDiscussedClick(cb) {
     cb();
   });
 }
+
+BUTTONS.forEach((btn) => btn.classList.remove('img-filters__button--active'));
+BUTTONS[currentFilter].classList.add('img-filters__button--active');
+
+container.classList.remove('img-filters--inactive');
 
 export { setDefaultClick, setRandomClick, setDiscussedClick };
