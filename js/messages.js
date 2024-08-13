@@ -1,4 +1,5 @@
-import { isEscapeKey, onEscKeydown } from './util.js';
+import { onEscKeydown, listenEscKeydown } from './form.js';
+import { isEscapeKey } from './util.js';
 
 const body = document.querySelector('body');
 const succesMessage = document.querySelector('#success')
@@ -18,19 +19,6 @@ const onEscKeydownError = (evt) => {
     onShowAlertClose();
   }
 };
-function onShowAlertClose() {
-  const successSectionElement = document.querySelector('.success');
-  const errorSectionElement = document.querySelector('.error');
-
-  if (successSectionElement) {
-    successSectionElement.remove();
-  }
-
-  if (errorSectionElement) {
-    errorSectionElement.remove();
-  }
-  document.addEventListener('keydown', onEscKeydown);
-}
 
 const onMessageClose = (evt) => {
   if (!evt.target.closest('.success__inner') && !evt.target.closest('.error__inner')) {
@@ -63,5 +51,21 @@ const onErrorDataForm = () => {
   const cloneErrorDataElement = errorDataMessage.cloneNode(true);
   body.append(cloneErrorDataElement);
 };
+
+function onShowAlertClose() {
+  const successSectionElement = document.querySelector('.success');
+  const errorSectionElement = document.querySelector('.error');
+
+  if (successSectionElement) {
+    successSectionElement.remove();
+  }
+
+  if (errorSectionElement) {
+    errorSectionElement.remove();
+  }
+  listenEscKeydown();
+  document.removeEventListener('click', onMessageClose);
+  document.removeEventListener('keydown', onEscKeydownError);
+}
 
 export { onSuccessForm, onErrorForm, onErrorDataForm };

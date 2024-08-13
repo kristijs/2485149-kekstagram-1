@@ -22,7 +22,7 @@ const renderGallery = (pictures) => {
 
 function renderRandom(pictures) {
   renderGallery(
-    pictures.slice()
+    [...pictures]
       .sort(() => (Math.random() - 0.5))
       .slice(0, NUMBER_RANDOM_PICTURES)
   );
@@ -30,7 +30,7 @@ function renderRandom(pictures) {
 
 function renderDiscussed(pictures) {
   renderGallery(
-    pictures.slice()
+    [...pictures]
       .sort((a, b) => (b.comments.length - a.comments.length))
   );
 }

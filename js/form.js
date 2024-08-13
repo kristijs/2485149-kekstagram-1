@@ -3,8 +3,9 @@ import { resetEffect } from './effects.js';
 import { onSuccessForm, onErrorForm } from './messages.js';
 import { sendData } from './api.js';
 import { pristine } from './valid.js';
-import { onEscKeydown } from './util.js';
 import { uploadPhoto } from './upload-images.js';
+import { hideBigPicture } from './full-size.js';
+import { isEscapeKey} from './util.js';
 
 const form = document.querySelector('.img-upload__form');
 const overlay = document.querySelector('.img-upload__overlay');
@@ -18,22 +19,31 @@ const SubmitButtonText = {
   IDLE: 'ОПУБЛИКОВАТЬ',
   SENDING: 'ПУБЛИКУЮ...'
 };
+const listenEscKeydown = () => document.addEventListener('keydown', onEscKeydown);
 
-const showModal = () =>{
-  resetScaleValue();
-  resetEffect();
-  overlay.classList.remove('hidden');
-  body.classList.add('modal-open');
-  document.addEventListener('keydown', onEscKeydown);
-  uploadPhoto();
+const onEscKeydown = (evt) => {
+  const hasFocus = evt.target.matches('.text__hashtags:focus') || evt.target.matches('textarea.text__description:focus');
+  if (isEscapeKey(evt) && !hasFocus) {
+    evt.preventDefault();
+    hideModal();
+    hideBigPicture();
+  }
 };
-
 const hideModal = () =>{
   form.reset();
   pristine.reset();
   overlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onEscKeydown);
+};
+
+const showModal = () =>{
+  resetScaleValue();
+  resetEffect();
+  overlay.classList.remove('hidden');
+  body.classList.add('modal-open');
+  listenEscKeydown();
+  uploadPhoto();
 };
 
 const isTextFieldFocused = () =>
@@ -95,4 +105,4 @@ fileField.addEventListener('change', onFileInputChange);
 cancelButton.addEventListener('click',onCancelButtonClick);
 form.addEventListener('submit', onFormSubmit);
 
-export {setUploadFormSubmit, onDocumentKeydown, hideModal};
+export {setUploadFormSubmit, onDocumentKeydown, hideModal, isEscapeKey, onEscKeydown, listenEscKeydown};

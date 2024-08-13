@@ -1,4 +1,4 @@
-import { initComments, renderComments, resetComments, totalCountComments} from './render-comments.js';
+import { initComments, renderComments, resetComments, showCountComments} from './render-comments.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const body = document.querySelector('body');
@@ -9,6 +9,7 @@ const hideBigPicture = () => {
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
   resetComments();
+  document.removeEventListener('keydown', onDocumentKeydown);
 };
 
 const onCancelButtonClick = () => {
@@ -23,7 +24,7 @@ const renderPictureDetails = ({url, likes, description}) =>{
 };
 
 const onDocumentKeydown = (evt) => {
-  if (evt.keyCode === 27){
+  if (evt.key === 'Escape'){
     hideBigPicture();
   }
 };
@@ -35,7 +36,7 @@ const showBigPicture = (picture) => {
   renderPictureDetails(picture);
   initComments(picture.comments);
   renderComments(picture.comments);
-  totalCountComments();
+  showCountComments();
 };
 
 cancelButton.addEventListener('click', onCancelButtonClick);

@@ -31,7 +31,7 @@ const showMoreComments = () => {
   }
 };
 
-const totalCountComments = () => {
+const showCountComments = () => {
   const newCounterValue = counter;
   counterElement.innerHTML = newCounterValue;
   commentShownCount.innerHTML = comments.length;
@@ -46,6 +46,7 @@ const renderComments = () => {
     const commentElement = commentElementTemplate.cloneNode(true);
     commentElement.querySelector('.social__picture').src = comment.avatar;
     commentElement.querySelector('.social__text').textContent = comment.message;
+    commentElement.querySelector('.social__picture').alt = comment.name;
     if (index >= COMMENTS_PER_PORTION){
       commentElement.classList.add('hidden');
     }
@@ -72,4 +73,4 @@ const resetComments = () =>{
 };
 commentsLoader.addEventListener ('click', showMoreComments);
 
-export { renderComments, initComments, resetComments, totalCountComments };
+export { renderComments, initComments, resetComments, showCountComments };
