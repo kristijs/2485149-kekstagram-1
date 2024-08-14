@@ -33,12 +33,12 @@ const showMoreComments = () => {
 
 const showCountComments = () => {
   const newCounterValue = counter;
-  counterElement.innerHTML = newCounterValue;
-  commentShownCount.innerHTML = comments.length;
+  counterElement.textContent = newCounterValue;
+  commentShownCount.textContent = comments.length.toString();
 };
 
 const renderComments = () => {
-  commentsList.innerHTML = '';
+  commentsList.textContent = '';
   totalValue = comments.length;
   counter = COMMENTS_PER_PORTION > totalValue ? totalValue : COMMENTS_PER_PORTION;
   const fragment = document.createDocumentFragment();

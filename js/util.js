@@ -5,10 +5,6 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
-const getRandomArrayElement = (array) =>
-  array[getRandomInteger(0, array.length - 1)];
-
-
 const debounce = (callback, timeoutDelay = 500) => {
   let timeoutId;
   return (...rest) => {
@@ -19,4 +15,4 @@ const debounce = (callback, timeoutDelay = 500) => {
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export {getRandomInteger, getRandomArrayElement, isEscapeKey, debounce};
+export {getRandomInteger, isEscapeKey, debounce};

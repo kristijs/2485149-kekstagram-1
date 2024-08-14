@@ -2,7 +2,7 @@ import { onEscKeydown, listenEscKeydown } from './form.js';
 import { isEscapeKey } from './util.js';
 
 const body = document.querySelector('body');
-const succesMessage = document.querySelector('#success')
+const successMessage = document.querySelector('#success')
   .content
   .querySelector('.success');
 
@@ -27,7 +27,7 @@ const onMessageClose = (evt) => {
 };
 
 const onSuccessForm = () => {
-  const cloneSuccessElement = succesMessage.cloneNode(true);
+  const cloneSuccessElement = successMessage.cloneNode(true);
   const successButtonElement = cloneSuccessElement.querySelector('.success__button');
   body.append(cloneSuccessElement);
 

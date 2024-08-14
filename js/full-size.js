@@ -23,11 +23,6 @@ const renderPictureDetails = ({url, likes, description}) =>{
   bigPicture.querySelector('.social__caption').textContent = description;
 };
 
-const onDocumentKeydown = (evt) => {
-  if (evt.key === 'Escape'){
-    hideBigPicture();
-  }
-};
 
 const showBigPicture = (picture) => {
   bigPicture.classList.remove('hidden');
@@ -38,6 +33,12 @@ const showBigPicture = (picture) => {
   renderComments(picture.comments);
   showCountComments();
 };
+
+function onDocumentKeydown(evt) {
+  if (evt.key === 'Escape'){
+    hideBigPicture();
+  }
+}
 
 cancelButton.addEventListener('click', onCancelButtonClick);
 

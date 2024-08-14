@@ -21,22 +21,6 @@ const SubmitButtonText = {
 };
 const listenEscKeydown = () => document.addEventListener('keydown', onEscKeydown);
 
-const onEscKeydown = (evt) => {
-  const hasFocus = evt.target.matches('.text__hashtags:focus') || evt.target.matches('textarea.text__description:focus');
-  if (isEscapeKey(evt) && !hasFocus) {
-    evt.preventDefault();
-    hideModal();
-    hideBigPicture();
-  }
-};
-const hideModal = () =>{
-  form.reset();
-  pristine.reset();
-  overlay.classList.add('hidden');
-  body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onEscKeydown);
-};
-
 const showModal = () =>{
   resetScaleValue();
   resetEffect();
@@ -50,7 +34,24 @@ const isTextFieldFocused = () =>
   document.activeElement === hashtagField ||
 document.activeElement === commentField;
 
-function onDocumentKeydown(evt){
+function onEscKeydown(evt) {
+  const hasFocus = evt.target.matches('.text__hashtags:focus') || evt.target.matches('textarea.text__description:focus');
+  if (isEscapeKey(evt) && !hasFocus) {
+    evt.preventDefault();
+    hideModal();
+    hideBigPicture();
+  }
+}
+
+function hideModal() {
+  form.reset();
+  pristine.reset();
+  overlay.classList.add('hidden');
+  body.classList.remove('modal-open');
+  document.removeEventListener('keydown', onEscKeydown);
+}
+
+function onDocumentKeydown(evt) {
   if (evt.key === 'Escape' && !isTextFieldFocused()) {
     evt.preventDefault();
     hideModal();

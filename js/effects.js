@@ -14,13 +14,13 @@ const resetEffect = () => {
   imgUploadPreview.style.filter = '';
 };
 
+let filter;
+
 const setFilter = (currentFilter) => {
   filter = currentFilter;
   sliderElementContainer.classList.remove('hidden');
   sliderElement.noUiSlider.updateOptions(filter.options);
 };
-
-let filter;
 
 noUiSlider.create(sliderElement, {
   range: {
