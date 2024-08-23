@@ -9,8 +9,9 @@ const uploadPhoto = () => {
   const fileName = file.name.toLowerCase();
   const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
   if (matches) {
-    imgUploadPreview.src = URL.createObjectURL(file);
-    effectsPreview.forEach((effect) => (effect.style.backgroundImage = `url(${imgUploadPreview.src})`));
+    const url = URL.createObjectURL(file);
+    imgUploadPreview.src = url;
+    effectsPreview.forEach((effect) => (effect.style.backgroundImage = `url(${url})`));
   }
 };
 

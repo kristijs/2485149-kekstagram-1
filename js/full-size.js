@@ -9,10 +9,10 @@ const hideBigPicture = () => {
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
   resetComments();
-  document.removeEventListener('keydown', onDocumentKeydown);
+  document.removeEventListener('keydown', handleClickHidePicture);
 };
 
-const onCancelButtonClick = () => {
+const handleClickHideModal = () => {
   hideBigPicture();
 };
 
@@ -27,19 +27,19 @@ const renderPictureDetails = ({url, likes, description}) =>{
 const showBigPicture = (picture) => {
   bigPicture.classList.remove('hidden');
   body.classList.add('modal-open');
-  document.addEventListener('keydown', onDocumentKeydown);
+  document.addEventListener('keydown', handleClickHidePicture);
   renderPictureDetails(picture);
   initComments(picture.comments);
   renderComments(picture.comments);
   showCountComments();
 };
 
-function onDocumentKeydown(evt) {
+function handleClickHidePicture(evt) {
   if (evt.key === 'Escape'){
     hideBigPicture();
   }
 }
 
-cancelButton.addEventListener('click', onCancelButtonClick);
+cancelButton.addEventListener('click', handleClickHideModal);
 
-export { showBigPicture, hideBigPicture , renderPictureDetails};
+export { showBigPicture, hideBigPicture };

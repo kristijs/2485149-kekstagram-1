@@ -3,19 +3,23 @@ import { showBigPicture } from './full-size.js';
 
 const container = document.querySelector('.pictures');
 const NUMBER_RANDOM_PICTURES = 10;
+let allPictures = [];
 
+const listenerForThumbnail = (evt) => {
+  const thumbnail = evt.target.closest('[data-thumbnail-id]');
+  if (!thumbnail) {
+    return;
+  }
+  evt.preventDefault();
+  const picture = allPictures.find(
+    (item) => item.id === +thumbnail.dataset.thumbnailId
+  );
+  showBigPicture(picture);
+};
 const renderGallery = (pictures) => {
-  container.addEventListener('click', (evt) => {
-    const thumbnail = evt.target.closest('[data-thumbnail-id]');
-    if (!thumbnail) {
-      return;
-    }
-    evt.preventDefault();
-    const picture = pictures.find(
-      (item) => item.id === +thumbnail.dataset.thumbnailId
-    );
-    showBigPicture(picture);
-  });
+  allPictures = pictures;
+  container.removeEventListener('click', listenerForThumbnail);
+  container.addEventListener('click', listenerForThumbnail);
 
   renderThumbnails(pictures, container);
 };

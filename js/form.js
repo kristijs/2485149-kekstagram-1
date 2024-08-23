@@ -1,6 +1,6 @@
 import { resetScaleValue } from './scale.js';
 import { resetEffect } from './effects.js';
-import { onSuccessForm, onErrorForm } from './messages.js';
+import { handleFormSuccess, handleShowErrorForm } from './messages.js';
 import { sendData } from './api.js';
 import { pristine } from './valid.js';
 import { uploadPhoto } from './upload-images.js';
@@ -51,21 +51,21 @@ function hideModal() {
   document.removeEventListener('keydown', onEscKeydown);
 }
 
-function onDocumentKeydown(evt) {
+function handleKeydownHideModal(evt) {
   if (evt.key === 'Escape' && !isTextFieldFocused()) {
     evt.preventDefault();
     hideModal();
   }
 }
-const onCancelButtonClick = () =>{
+const handleClickHideModal = () =>{
   hideModal();
 };
 
-const onFileInputChange = () =>{
+const handleChangeInputFile = () =>{
   showModal();
 };
 
-const onFormSubmit = (evt) =>{
+const handleFormSubmit = (evt) =>{
   evt.preventDefault();
 };
 
@@ -91,9 +91,9 @@ const setUploadFormSubmit = (onSuccess) => {
         .then(() => {
           pristine.reset();
           hideModal();
-          onSuccessForm();
+          handleFormSuccess();
         })
-        .catch(onErrorForm)
+        .catch(handleShowErrorForm)
         .finally(unblockSubmitButton);
     }
   });
@@ -102,8 +102,8 @@ const setUploadFormSubmit = (onSuccess) => {
 form.reset();
 pristine.reset();
 
-fileField.addEventListener('change', onFileInputChange);
-cancelButton.addEventListener('click',onCancelButtonClick);
-form.addEventListener('submit', onFormSubmit);
+fileField.addEventListener('change', handleChangeInputFile);
+cancelButton.addEventListener('click',handleClickHideModal);
+form.addEventListener('submit', handleFormSubmit);
 
-export {setUploadFormSubmit, onDocumentKeydown, hideModal, isEscapeKey, onEscKeydown, listenEscKeydown};
+export {setUploadFormSubmit, handleKeydownHideModal, hideModal, isEscapeKey, onEscKeydown, listenEscKeydown};

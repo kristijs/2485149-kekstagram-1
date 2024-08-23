@@ -14,40 +14,40 @@ const errorDataMessage = document.querySelector('#data-error')
   .content
   .querySelector('.data-error');
 
-const onEscKeydownError = (evt) => {
+const handleClickCloseAlert = (evt) => {
   if (isEscapeKey(evt)) {
     onShowAlertClose();
   }
 };
 
-const onMessageClose = (evt) => {
+const handleClickCloseMessage = (evt) => {
   if (!evt.target.closest('.success__inner') && !evt.target.closest('.error__inner')) {
     onShowAlertClose();
   }
 };
 
-const onSuccessForm = () => {
+const handleFormSuccess = () => {
   const cloneSuccessElement = successMessage.cloneNode(true);
   const successButtonElement = cloneSuccessElement.querySelector('.success__button');
   body.append(cloneSuccessElement);
 
-  document.addEventListener('click', onMessageClose);
-  document.addEventListener('keydown', onEscKeydownError);
+  document.addEventListener('click', handleClickCloseMessage);
+  document.addEventListener('keydown', handleClickCloseAlert);
   successButtonElement.addEventListener('click', onShowAlertClose);
 };
 
-const onErrorForm = () => {
+const handleShowErrorForm = () => {
   const cloneErrorElement = errorMessage.cloneNode(true);
   const errorButtonElement = cloneErrorElement.querySelector('.error__button');
   body.append(cloneErrorElement);
 
-  document.addEventListener('click', onMessageClose);
-  document.addEventListener('keydown', onEscKeydownError);
+  document.addEventListener('click', handleClickCloseMessage);
+  document.addEventListener('keydown', handleClickCloseAlert);
   errorButtonElement.addEventListener('click', onShowAlertClose);
   document.removeEventListener('keydown', onEscKeydown);
 };
 
-const onErrorDataForm = () => {
+const handleShowErrorData = () => {
   const cloneErrorDataElement = errorDataMessage.cloneNode(true);
   body.append(cloneErrorDataElement);
 };
@@ -64,8 +64,8 @@ function onShowAlertClose() {
     errorSectionElement.remove();
   }
   listenEscKeydown();
-  document.removeEventListener('click', onMessageClose);
-  document.removeEventListener('keydown', onEscKeydownError);
+  document.removeEventListener('click', handleClickCloseMessage);
+  document.removeEventListener('keydown', handleClickCloseAlert);
 }
 
-export { onSuccessForm, onErrorForm, onErrorDataForm };
+export { handleFormSuccess, handleShowErrorForm, handleShowErrorData };

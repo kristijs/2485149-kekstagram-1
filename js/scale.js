@@ -17,7 +17,7 @@ const changeScaleImage = (value) => {
   changeInputElement.value = `${value}%`;
 };
 
-const onSmallerButtonClick = () =>{
+const handleClickReduceImage = () =>{
   const currentValue = parseInt(changeInputElement.value, 10);
   let newValue = currentValue - STEP_SCALE;
   if(newValue < MIN_SCALE){
@@ -26,7 +26,7 @@ const onSmallerButtonClick = () =>{
   changeScaleImage(newValue);
 };
 
-const onBiggerButtonClick = () =>{
+const handleClickIncreaseImage = () =>{
   const currentValue = parseInt(changeInputElement.value, 10);
   let newValue = currentValue + STEP_SCALE;
   if(newValue > MAX_SCALE){
@@ -40,7 +40,7 @@ const resetScaleValue = () =>{
   changeScaleImage(scaleValue);
 };
 
-smallerButtonElement.addEventListener('click', onSmallerButtonClick);
-biggerButtonElement.addEventListener('click', onBiggerButtonClick);
+smallerButtonElement.addEventListener('click', handleClickReduceImage);
+biggerButtonElement.addEventListener('click', handleClickIncreaseImage);
 
 export {resetScaleValue};
